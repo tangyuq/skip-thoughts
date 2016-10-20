@@ -1,3 +1,9 @@
+# Ported to Python 3.x 
+As of 10/19/2016, the original code is translated into Python 3.x using 
+    futurize --stage1 -w */*.py *.py
+    futurize --stage2 -w */*.py *.py
+And added encoding parameters to numpy.load(...).
+
 # skip-thoughts
 
 Sent2Vec encoder and training code from the paper [Skip-Thought Vectors](http://arxiv.org/abs/1506.06726).
@@ -6,7 +12,7 @@ Sent2Vec encoder and training code from the paper [Skip-Thought Vectors](http://
 
 This code is written in python. To use it you will need:
 
-* Python 2.7
+* Python 3.x
 * Theano 0.7
 * A recent version of [NumPy](http://www.numpy.org/) and [SciPy](http://www.scipy.org/)
 * [scikit-learn](http://scikit-learn.org/stable/index.html)
