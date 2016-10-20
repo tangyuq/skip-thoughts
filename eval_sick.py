@@ -73,7 +73,7 @@ def prepare_model(ninputs=9600, nclass=5):
     Set up and compile the model architecture (Logistic regression)
     """
     lrmodel = Sequential()
-    lrmodel.add(Dense(ninputs, nclass))
+    lrmodel.add(Dense(input_dim = ninputs, output_dim = nclass))
     lrmodel.add(Activation('softmax'))
     lrmodel.compile(loss='categorical_crossentropy', optimizer='adam')
     return lrmodel
@@ -126,19 +126,19 @@ def load_data(loc='./data/'):
     trainA, trainB, devA, devB, testA, testB = [],[],[],[],[],[]
     trainS, devS, testS = [],[],[]
 
-    with open(loc + 'SICK_train.txt', 'rb') as f:
+    with open(loc + 'SICK_train.txt', 'r') as f:
         for line in f:
             text = line.strip().split('\t')
             trainA.append(text[1])
             trainB.append(text[2])
             trainS.append(text[3])
-    with open(loc + 'SICK_trial.txt', 'rb') as f:
+    with open(loc + 'SICK_trial.txt', 'r') as f:
         for line in f:
             text = line.strip().split('\t')
             devA.append(text[1])
             devB.append(text[2])
             devS.append(text[3])
-    with open(loc + 'SICK_test_annotated.txt', 'rb') as f:
+    with open(loc + 'SICK_test_annotated.txt', 'r') as f:
         for line in f:
             text = line.strip().split('\t')
             testA.append(text[1])

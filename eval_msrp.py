@@ -64,14 +64,14 @@ def load_data(loc='./data/'):
     trainA, trainB, testA, testB = [],[],[],[]
     trainS, devS, testS = [],[],[]
 
-    f = open(trainloc, 'rb')
+    f = open(trainloc, 'r')
     for line in f:
         text = line.strip().split('\t')
         trainA.append(' '.join(word_tokenize(text[3])))
         trainB.append(' '.join(word_tokenize(text[4])))
         trainS.append(text[0])
     f.close()
-    f = open(testloc, 'rb')
+    f = open(testloc, 'r')
     for line in f:
         text = line.strip().split('\t')
         testA.append(' '.join(word_tokenize(text[3])))
