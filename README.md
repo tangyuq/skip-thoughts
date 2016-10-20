@@ -1,4 +1,4 @@
-# Ported to Python 3.x 
+# Porting skip-thoughts to Python 3.x 
 As of 10/19/2016, 
 * the original code is translated into Python 3.x using 
 
@@ -6,7 +6,7 @@ As of 10/19/2016,
 
     futurize --stage2 -w */*.py *.py
     
-* and added encoding parameters to numpy.load(...).
+* and additional minor fixes to fit the Python 3.x libraries' APIs. 
 
 # skip-thoughts
 
