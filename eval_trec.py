@@ -1,6 +1,9 @@
 '''
 Evaluation code for the TREC dataset
 '''
+from __future__ import print_function
+from builtins import str
+from builtins import range
 import numpy as np
 import skipthoughts
 from sklearn.linear_model import LogisticRegression
@@ -14,7 +17,7 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
     k: number of CV folds
     test: whether to evaluate on test set
     """
-    print 'Preparing data...'
+    print('Preparing data...')
     traintext, testtext = load_data()
     train, train_labels = prepare_data(traintext)
     test, test_labels = prepare_data(testtext)
@@ -22,11 +25,11 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
     test_labels = prepare_labels(test_labels)
     train, train_labels = shuffle(train, train_labels, random_state=seed)
 
-    print 'Computing training skipthoughts...'
+    print('Computing training skipthoughts...')
     trainF = skipthoughts.encode(model, train, verbose=False, use_eos=False)
     
     if evalcv:
-        print 'Running cross-validation...'
+        print('Running cross-validation...')
         interval = [2**t for t in range(0,9,1)]     # coarse-grained
         C = eval_kfold(trainF, train_labels, k=k, scan=interval, seed=seed)
 
@@ -34,14 +37,14 @@ def evaluate(model, k=10, seed=1234, evalcv=True, evaltest=False):
         if not evalcv:
             C = 128     # Best parameter found from CV
 
-        print 'Computing testing skipthoughts...'
+        print('Computing testing skipthoughts...')
         testF = skipthoughts.encode(model, test, verbose=False, use_eos=False)
 
-        print 'Evaluating...'
+        print('Evaluating...')
         clf = LogisticRegression(C=C)
         clf.fit(trainF, train_labels)
         yhat = clf.predict(testF)
-        print 'Test accuracy: ' + str(clf.score(testF, test_labels))
+        print('Test accuracy: ' + str(clf.score(testF, test_labels)))
 
 
 def load_data(loc='./data/'):
@@ -108,15 +111,15 @@ def eval_kfold(features, labels, k=10, scan=[2**t for t in range(0,9,1)], seed=1
             clf.fit(X_train, y_train)
             score = clf.score(X_test, y_test)
             scanscores.append(score)
-            print (s, score)
+            print((s, score))
 
         # Append mean score
         scores.append(np.mean(scanscores))
-        print scores
+        print(scores)
 
     # Get the index of the best score
     s_ind = np.argmax(scores)
     s = scan[s_ind]
-    print (s_ind, s)
+    print((s_ind, s))
     return s
 

@@ -1,3 +1,6 @@
+from __future__ import division
+from builtins import range
+from past.utils import old_div
 # Naive-Bayes features
 # Derived from https://github.com/mesnilgr/nbsvm
 
@@ -26,7 +29,7 @@ def build_dict(X, grams):
 
 
 def compute_ratio(poscounts, negcounts, alpha=1):
-    alltokens = list(set(poscounts.keys() + negcounts.keys()))
+    alltokens = list(set(list(poscounts.keys()) + list(negcounts.keys())))
     dic = dict((t, i) for i, t in enumerate(alltokens))
     d = len(dic)
     p, q = np.ones(d) * alpha , np.ones(d) * alpha
@@ -35,7 +38,7 @@ def compute_ratio(poscounts, negcounts, alpha=1):
         q[dic[t]] += negcounts[t]
     p /= abs(p).sum()
     q /= abs(q).sum()
-    r = np.log(p/q)
+    r = np.log(old_div(p,q))
     return dic, r
 
 

@@ -1,7 +1,9 @@
+from builtins import zip
+from builtins import object
 import numpy
 import copy
 
-class HomogeneousData():
+class HomogeneousData(object):
 
     def __init__(self, data, batch_size=128, maxlen=None):
         self.batch_size = 128
@@ -43,7 +45,7 @@ class HomogeneousData():
             self.len_indices[ll] = numpy.random.permutation(self.len_indices[ll])
         self.len_idx = -1
 
-    def next(self):
+    def __next__(self):
         count = 0
         while True:
             self.len_idx = numpy.mod(self.len_idx+1, len(self.len_unique))
