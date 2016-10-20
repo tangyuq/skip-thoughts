@@ -1,4 +1,4 @@
-# Porting skip-thoughts to Python 3.x 
+# A port of skip-thoughts to Python 3.x 
 As of 10/19/2016, 
 * the original code is translated into Python 3.x using 
 
