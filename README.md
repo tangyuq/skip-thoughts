@@ -3,6 +3,7 @@ As of 10/19/2016,
 * the original code is translated into Python 3.x using 
 
     futurize --stage1 -w */*.py *.py
+
     futurize --stage2 -w */*.py *.py
     
 * and added encoding parameters to numpy.load(...).
