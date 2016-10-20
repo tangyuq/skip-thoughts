@@ -52,10 +52,10 @@ def load_data(loc='./data/'):
     Load the TREC question-type dataset
     """
     train, test = [], []
-    with open(loc + 'train_5500.label', 'rb') as f:
+    with open(loc + 'train_5500.label', 'r', encoding = "ISO-8859-1") as f:
         for line in f:
             train.append(line.strip())
-    with open(loc + 'TREC_10.label', 'rb') as f:
+    with open(loc + 'TREC_10.label', 'r', encoding = "ISO-8859-1") as f:
         for line in f:
             test.append(line.strip())
     return train, test
